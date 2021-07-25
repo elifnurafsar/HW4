@@ -30,15 +30,15 @@ If we try our code with the input 8.bmp the output will be
 If we add below code to line 151 in determine.m  we can have outout image which shows us our labeled components.
   
  ``
-Z=zeros(x,y);
-for i=1:x
-    for j=1:y
-        if I(i,j)>1
-            Z(i,j)=1;
-        end
-    end
-end
-figure 
+Z=zeros(x,y);           
+for i=1:x                
+    for j=1:y              
+        if I(i,j)>1          
+            Z(i,j)=1;              
+        end            
+    end                     
+end                  
+figure                    
 imshow(Z);
  ``
   Output images will be 
@@ -47,4 +47,12 @@ imshow(Z);
 
   
 
- 
+ Distinguish 0:
+ If our image has one labeled component the number can be 0, 4, 6 or 9.
+ In this situation the code will find the maximum and minimum poins (such as the bottom of 9) of original image and the labeled component. If there is a pixel which equals 0 between these two shapes's maximal points the output cannot be 0. 
+  
+  Here is a clear explanation of my idea.
+  
+  ![Adsız](https://user-images.githubusercontent.com/60623941/126902551-bd45e956-5291-4e4d-a656-7802a7b6a69a.png)
+
+  The colored areas are labels. The blue points are maximal pixels. The green lines are where we search 0 pixels. As shown 4, 9 and 6 has 0's in green lines but 0 has not. 
